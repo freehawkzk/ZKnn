@@ -11,7 +11,7 @@ CPerceptron::~CPerceptron()
 {
 }
 
-float CPerceptron::Compute()
+float CPerceptron::Run()
 {
     float fsum = 0;
     for (int i=0;i<vInputs.size(); i++)

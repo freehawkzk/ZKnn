@@ -115,13 +115,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CInputLayer.h" />
+    <ClInclude Include="CLayer.h" />
     <ClInclude Include="CNeuron.h" />
+    <ClInclude Include="COutputLayer.h" />
     <ClInclude Include="CPerceptron.h" />
     <ClInclude Include="CSigmoidNeuron.h" />
     <ClInclude Include="InterFuncs.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CInputLayer.cpp" />
+    <ClCompile Include="CLayer.cpp" />
     <ClCompile Include="CNeuron.cpp" />
+    <ClCompile Include="COutputLayer.cpp" />
     <ClCompile Include="CPerceptron.cpp" />
     <ClCompile Include="CSigmoidNeuron.cpp" />
     <ClCompile Include="InterFuncs.cpp" />

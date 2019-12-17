@@ -6,6 +6,6 @@ class CSigmoidNeuron :
 public:
     CSigmoidNeuron();
     virtual ~CSigmoidNeuron();
-    virtual float Compute();
+    virtual float Run();
 };
 

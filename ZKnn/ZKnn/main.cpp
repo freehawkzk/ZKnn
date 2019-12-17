@@ -1,19 +1,25 @@
 #include <iostream>
-#include "CPerceptron.h"
-#include "CSigmoidNeuron.h"
+#include "CLayer.h"
+#include "CInputLayer.h"
+#include "COutputLayer.h"
+
 int main()
 {
-    CPerceptron p;
-    p.vInputs.push_back(false); p.vWeights.push_back(-2);
-    p.vInputs.push_back(false); p.vWeights.push_back(-2);
-    p.fBias = 3;
-    float bhr = p.Compute();
-    std::cout << bhr << std::endl;
+    CInputLayer inputLayer(10);
+    CLayer hiddenLayer(100);
+    COutputLayer outputlayer(10);
 
-    CSigmoidNeuron s;
-    s.vInputs.push_back(0); s.vWeights.push_back(-2);
-    s.vInputs.push_back(0); s.vWeights.push_back(-2);
-    s.fBias = 3;
-    std::cout << s.Compute() << std::endl;
+    inputLayer.SetTopLayer(&hiddenLayer);
+    hiddenLayer.SetBottomLayer(&inputLayer);
+    hiddenLayer.SetTopLayer(&outputlayer);
+    outputlayer.SetBottomLayer(&hiddenLayer);
+
+    inputLayer.Run();
+    hiddenLayer.Run();
+    outputlayer.Run();
+    for (int i = 0; i < outputlayer.vpNeurons.size(); i++)
+    {
+        std::cout <<i<<" "<< outputlayer.vpNeurons[i]->fOutput << std::endl;
+    }
     return 0;
 }

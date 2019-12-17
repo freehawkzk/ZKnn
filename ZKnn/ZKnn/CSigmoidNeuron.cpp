@@ -1,9 +1,10 @@
 #include "CSigmoidNeuron.h"
 #include "InterFuncs.h"
-
+#include <iostream>
 
 CSigmoidNeuron::CSigmoidNeuron()
 {
+    fBias = rand()*1.0f / RAND_MAX;
 }
 
 
@@ -11,12 +12,14 @@ CSigmoidNeuron::~CSigmoidNeuron()
 {
 }
 
-float CSigmoidNeuron::Compute()
+float CSigmoidNeuron::Run()
 {
+    std::cout << "Neuron " << nNeuronID << " Run" << std::endl;
+
     float fsum = 0;
-    for (int i=0;i<vInputs.size();i++)
+    for (int i=0;i< vpBottom.size();i++)
     {
-        fsum += (vInputs[i] * vWeights[i]);
+        fsum += (vpBottom[i]->fOutput * vWeights[i]);
     }
     fsum += fBias;
     fOutput = Func_Sigmoid(fsum);

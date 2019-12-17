@@ -10,6 +10,6 @@ public:
     CPerceptron();
     ~CPerceptron();
 
-    float Compute();
+    float Run();
 };
 

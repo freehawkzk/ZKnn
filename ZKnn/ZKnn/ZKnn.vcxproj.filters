@@ -27,6 +27,15 @@
     <ClInclude Include="CSigmoidNeuron.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CLayer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CInputLayer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="COutputLayer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -42,6 +51,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CSigmoidNeuron.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CLayer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CInputLayer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="COutputLayer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
