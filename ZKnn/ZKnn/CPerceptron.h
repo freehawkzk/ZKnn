@@ -1,5 +1,9 @@
 #pragma once
 #include <vector>
+/*
+    output = 1, if sum(input[i]*vWeight[i]) + fBias > 0
+    output = 1, if sum(input[i]*vWeight[i]) + fBias < 0
+*/
 class CPerceptron
 {
 public:
@@ -8,7 +12,7 @@ public:
 
     std::vector<bool> vInputs;
     std::vector<float> vWeights;
-    float fThresh;
+    float fBias;
     bool bOutput;
 
     bool Computer();

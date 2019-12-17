@@ -18,7 +18,8 @@ bool CPerceptron::Computer()
     {
         fsum += (vInputs[i] * vWeights[i]);
     }
-    if (fsum > fThresh)
+    fsum += fBias;
+    if (fsum > 0)
         bOutput = true;
     else
         bOutput = false;
