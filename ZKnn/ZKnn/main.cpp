@@ -5,8 +5,8 @@
 
 int main()
 {
-    CInputLayer inputLayer(10);
-    CLayer hiddenLayer(100);
+    CInputLayer inputLayer(784);
+    CLayer hiddenLayer(15);
     COutputLayer outputlayer(10);
 
     inputLayer.SetTopLayer(&hiddenLayer);

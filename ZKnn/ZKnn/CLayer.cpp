@@ -63,7 +63,7 @@ void CLayer::SetBottomLayer(CLayer* pBottomLayer)
         for (int k = 0; k < vpNeurons[i]->vpBottom.size(); k++)
         {
             float fw = rand() *1.0f / RAND_MAX;
-            vpNeurons[i]->vWeights.push_back(fw);
+            vpNeurons[i]->vWeights.push_back(2*fw-1);
         }
     }
     for (int j = 0;j<pBottomLayer->vpNeurons.size(); j++)
