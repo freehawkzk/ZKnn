@@ -11,7 +11,7 @@ CPerceptron::~CPerceptron()
 {
 }
 
-bool CPerceptron::Computer()
+float CPerceptron::Compute()
 {
     float fsum = 0;
     for (int i=0;i<vInputs.size(); i++)
@@ -20,8 +20,8 @@ bool CPerceptron::Computer()
     }
     fsum += fBias;
     if (fsum > 0)
-        bOutput = true;
+        fOutput = 1;
     else
-        bOutput = false;
-    return bOutput;
+        fOutput = 0;
+    return fOutput;
 }

@@ -115,16 +115,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="CInputNode.h" />
-    <ClInclude Include="CNeurocyte.h" />
-    <ClInclude Include="COutputNode.h" />
+    <ClInclude Include="CNeuron.h" />
     <ClInclude Include="CPerceptron.h" />
+    <ClInclude Include="CSigmoidNeuron.h" />
+    <ClInclude Include="InterFuncs.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CInputNode.cpp" />
-    <ClCompile Include="CNeurocyte.cpp" />
-    <ClCompile Include="COutputNode.cpp" />
+    <ClCompile Include="CNeuron.cpp" />
     <ClCompile Include="CPerceptron.cpp" />
+    <ClCompile Include="CSigmoidNeuron.cpp" />
+    <ClCompile Include="InterFuncs.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -15,33 +15,33 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CNeurocyte.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CInputNode.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="COutputNode.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="CPerceptron.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="InterFuncs.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CNeuron.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CSigmoidNeuron.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CNeurocyte.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CInputNode.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="COutputNode.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CPerceptron.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="InterFuncs.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CNeuron.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CSigmoidNeuron.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
