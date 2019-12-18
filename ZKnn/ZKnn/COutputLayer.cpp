@@ -11,7 +11,7 @@ COutputLayer::~COutputLayer()
 {
 }
 
-void COutputLayer::Run()
-{
-    CLayer::Run();
-}
+//void COutputLayer::Run()
+//{
+//    CLayer::Run();
+//}

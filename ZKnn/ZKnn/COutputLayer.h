@@ -7,6 +7,6 @@ public:
     COutputLayer(int nNeuronNum);
     virtual ~COutputLayer();
 
-    virtual void Run();
+    //virtual void Run();
 };
 

@@ -1,25 +1,12 @@
 #include <iostream>
-#include "CLayer.h"
-#include "CInputLayer.h"
-#include "COutputLayer.h"
-
+#include "CNetwork.h"
 int main()
 {
-    CInputLayer inputLayer(784);
-    CLayer hiddenLayer(15);
-    COutputLayer outputlayer(10);
-
-    inputLayer.SetTopLayer(&hiddenLayer);
-    hiddenLayer.SetBottomLayer(&inputLayer);
-    hiddenLayer.SetTopLayer(&outputlayer);
-    outputlayer.SetBottomLayer(&hiddenLayer);
-
-    inputLayer.Run();
-    hiddenLayer.Run();
-    outputlayer.Run();
-    for (int i = 0; i < outputlayer.vpNeurons.size(); i++)
-    {
-        std::cout <<i<<" "<< outputlayer.vpNeurons[i]->fOutput << std::endl;
-    }
+    CNetwork net;
+    net.AddInputLayer(784);//输入层784，那么输入的样本需要整理为784行1列的数据，N个样本时，是784*N
+    net.AddHiddenLayer(15);//隐含层15
+    net.AddOutputLayer(10);//输出层10
+    net.InitilizeWeightBias();
+    net.OutputNetworkStruct();
     return 0;
 }

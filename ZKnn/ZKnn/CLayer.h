@@ -11,9 +11,10 @@ public:
     int nBottomLayerID;
     int nTopLayerID;
     std::vector<CNeuron*> vpNeurons;
-    void SetTopLayer(CLayer* pTopLayer);
-    void SetBottomLayer(CLayer* pBottomLayer);
+    int nNeuronCount;
+    //void SetTopLayer(CLayer* pTopLayer);
+    //void SetBottomLayer(CLayer* pBottomLayer);
 
-    virtual void Run();
+    //virtual void Run();
 };
 

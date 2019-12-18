@@ -9,7 +9,7 @@ CInputLayer::~CInputLayer()
 {
 }
 
-void CInputLayer::Run()
-{
-    CLayer::Run();
-}
+//void CInputLayer::Run()
+//{
+//    CLayer::Run();
+//}
