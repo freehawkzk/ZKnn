@@ -1,12 +1,33 @@
 #include <iostream>
-#include "CNetwork.h"
+#include "Network.h"
 int main()
 {
     CNetwork net;
-    net.AddInputLayer(784);//输入层784，那么输入的样本需要整理为784行1列的数据，N个样本时，是784*N
-    net.AddHiddenLayer(15);//隐含层15
-    net.AddOutputLayer(10);//输出层10
-    net.InitilizeWeightBias();
-    net.OutputNetworkStruct();
+    net.SetLearnRate(0.1);
+    net.AddInputLayer(3);
+    net.AddHiddenLayer(16);
+    net.AddOutputLayer(3);
+    net.InitilizeAllWeightAndBias();
+
+    std::vector<float> input;
+    input.push_back(1);
+    input.push_back(0);
+    input.push_back(1);
+
+    std::vector<float> lable;
+    lable.push_back(0);
+    lable.push_back(1);
+    lable.push_back(0);
+    int nTotal = 10000000;
+    for (int i=0;i<nTotal;i++)
+    {
+        net.Train(input, lable);
+    }
+    std::vector<float> ti{ 0.9,0.1,0.9 };
+    auto res = net.Test(ti);
+    for (int i=0;i<res.size();i++)
+    {
+        std::cout << res[i] << std::endl;
+    }
     return 0;
 }
