@@ -15,45 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="InterFuncs.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CNeuron.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CLayer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CInputLayer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="COutputLayer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CNetwork.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="InterFuncs.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CNeuron.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CLayer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CInputLayer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="COutputLayer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CNetwork.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

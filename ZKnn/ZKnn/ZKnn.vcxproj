@@ -131,20 +131,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="CInputLayer.h" />
-    <ClInclude Include="CLayer.h" />
-    <ClInclude Include="CNetwork.h" />
-    <ClInclude Include="CNeuron.h" />
-    <ClInclude Include="COutputLayer.h" />
-    <ClInclude Include="InterFuncs.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="CInputLayer.cpp" />
-    <ClCompile Include="CLayer.cpp" />
-    <ClCompile Include="CNetwork.cpp" />
-    <ClCompile Include="CNeuron.cpp" />
-    <ClCompile Include="COutputLayer.cpp" />
-    <ClCompile Include="InterFuncs.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
