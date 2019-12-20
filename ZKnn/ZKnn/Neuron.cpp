@@ -22,13 +22,14 @@ CNeuron* CNeuron::GetNeuronByID(long id)
 
 
 CNeuron::CNeuron():m_lID(CNeuron::slNeuronCount++)\
-,m_fB(0)\
-,m_fA(0)\
-,m_fActPrimeZ(0)\
-,m_fDelta(0)\
-,m_fZ(0)\
+//,m_fB(0)\
+//,m_fA(0)\
+//,m_fActPrimeZ(0)\
+//,m_fDelta(0)\
+//,m_fZ(0)\
 ,m_pActivationFunc(nullptr)\
-,m_pActivationPrimeFunc(nullptr)
+,m_pActivationPrimeFunc(nullptr)\
+,m_nBatchSize(1)
 {
     m_mBottomLink.clear();
     m_mTopLink.clear();
@@ -54,7 +55,7 @@ void CNeuron::SetActivationPrimeFunc(ActivationPrimeFunc* pFunc)
 void CNeuron::Forward()
 {
     float fsum = 0;
-    for (auto it = m_mBottomLink.begin(); it!= m_mBottomLink.end();it++)
+    for (auto it = m_mBottomLink.begin(); it != m_mBottomLink.end(); it++)
     {
         auto p = CNeuron::GetNeuronByID(it->first);
         fsum += (p->m_fA*it->second);
@@ -64,28 +65,83 @@ void CNeuron::Forward()
     m_fActPrimeZ = Func_sigmoid_prime(m_fZ);
 }
 
-void CNeuron::Backward()
-{
-    float fsum = 0;
-    for (auto it = m_mTopLink.begin(); it!= m_mTopLink.end();it++)
-    {
-        auto p = CNeuron::GetNeuronByID(it->first);
-        fsum += ((p->m_fDelta * it->second)*m_fActPrimeZ);
-    }
-    m_fDelta = fsum;
-}
+//void CNeuron::Backward()
+//{
+//    float fsum = 0;
+//    for (auto it = m_mTopLink.begin(); it!= m_mTopLink.end();it++)
+//    {
+//        auto p = CNeuron::GetNeuronByID(it->first);
+//        fsum += ((p->m_fDelta * it->second)*m_fActPrimeZ);
+//    }
+//    m_fDelta = fsum;
+//}
 
 void CNeuron::UpdateBias(float lr)
 {
-    m_fB = m_fB - lr * m_fDelta;
+    //m_fB = m_fB - lr * m_fDelta;
+    float fsum = 0;
+    for (int i=0;i<m_vDelta.size();i++)
+    {
+        fsum += m_vDelta[i];
+    }
+    m_fB = m_fB - lr * fsum / m_nBatchSize;
 }
 
 void CNeuron::UpdateWeights(float lr)
 {
-    for (auto it = m_mBottomLink.begin(); it!= m_mBottomLink.end();it++)
+    //for (auto it = m_mBottomLink.begin(); it!= m_mBottomLink.end();it++)
+    //{
+    //    auto p = CNeuron::GetNeuronByID(it->first);
+    //    it->second = it->second - lr * m_fDelta*p->m_fA;
+    //    p->m_mTopLink[m_lID] = it->second;
+    //}
+    float fsum = 0;
+    for (int i=0;i<m_vDelta.size();i++)
+    {
+        fsum += (m_vDelta[i] * m_vA[i]);
+    }
+    fsum /= m_nBatchSize;
+    for (auto it = m_mBottomLink.begin(); it != m_mBottomLink.end(); it++)
     {
         auto p = CNeuron::GetNeuronByID(it->first);
-        it->second = it->second - lr * m_fDelta*p->m_fA;
+        it->second = it->second - lr *fsum;
         p->m_mTopLink[m_lID] = it->second;
     }
+}
+
+void CNeuron::SetBatchSize(int nSize)
+{
+    m_vA.clear();
+    m_vA.resize(nSize);
+    m_vActPrimeZ.clear();
+    m_vActPrimeZ.resize(nSize);
+    m_vDelta.clear();
+    m_vDelta.resize(nSize);
+    m_vZ.clear();
+    m_vZ.resize(nSize);
+    m_nBatchSize = nSize;
+}
+
+void CNeuron::Forward(int index)
+{
+    float fsum = 0;
+    for (auto it = m_mBottomLink.begin(); it != m_mBottomLink.end(); it++)
+    {
+        auto p = CNeuron::GetNeuronByID(it->first);
+        fsum += (p->m_vA[index]*it->second);
+    }
+    m_vZ[index] = fsum + m_fB;
+    m_vA[index] = Func_sigmoid(m_vZ[index]);
+    m_vActPrimeZ[index] = Func_sigmoid_prime(m_vZ[index]);
+}
+
+void CNeuron::Backward(int index)
+{
+    float fsum = 0;
+    for (auto it = m_mTopLink.begin(); it != m_mTopLink.end(); it++)
+    {
+        auto p = CNeuron::GetNeuronByID(it->first);
+        fsum += ((p->m_vDelta[index] * it->second)*m_vActPrimeZ[index]);
+    }
+    m_vDelta[index] = fsum;
 }

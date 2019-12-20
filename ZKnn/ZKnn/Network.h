@@ -18,7 +18,7 @@ public:
     void OutputNetworkStruct();
 
     void Forward(std::vector<float>& input);
-    void Backward(std::vector<float>& lable);
+    //void Backward(std::vector<float>& lable);
     void UpdateBias();
     void UpdateWeights();
     void Release();
@@ -26,9 +26,17 @@ public:
     std::vector<float> GetOutput();
 
     std::vector<float> Test(std::vector<float>& input);
-    void Train(std::vector<float>&input, std::vector<float>&lable);
+    //void Train(std::vector<float>&input, std::vector<float>&lable);
+
+    void Forward(std::vector < std::vector<float>>& inputs);
+    void Backward(std::vector < std::vector<float>>& lables);
+    void SetBatchSize(int nSize);
+    //std::vector<float> Test(std::vector < std::vector<float>>& input);
+    void Train(std::vector < std::vector<float>>&input, std::vector < std::vector<float>>&lable);
 private:
     void SetInput(std::vector<float>& input);
-    void CalcDeltaOfOutputLayer(std::vector<float>& lable);
+    void SetInput(std::vector < std::vector<float>>& inputs);
+    //void CalcDeltaOfOutputLayer(std::vector<float>& lable);
+    void CalcDeltaOfOutputLayer(std::vector<std::vector<float>>& lables,int index);
 };
 

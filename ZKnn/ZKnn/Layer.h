@@ -26,9 +26,13 @@ public:
     void SetBottomLayer(CLayer* p);
 
     void Forward();
-    void Backward();
+    //void Backward();
     void UpdateBias(float lr);
     void UpdateWeights(float lr);
+
+    void SetBatchSize(int nSize);
+    void Forward(int index);
+    void Backward(int index);
 private:
     CLayer();
 };

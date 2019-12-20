@@ -77,19 +77,19 @@ void CLayer::SetBottomLayer(CLayer* p)
 
 void CLayer::Forward()
 {
-    for (int i=0;i<m_vpNeurons.size();i++)
+    for (int i = 0; i < m_vpNeurons.size(); i++)
     {
         m_vpNeurons[i]->Forward();
     }
 }
 
-void CLayer::Backward()
-{
-    for (int i=0;i<m_vpNeurons.size();i++)
-    {
-        m_vpNeurons[i]->Backward();
-    }
-}
+//void CLayer::Backward()
+//{
+//    for (int i=0;i<m_vpNeurons.size();i++)
+//    {
+//        m_vpNeurons[i]->Backward();
+//    }
+//}
 
 void CLayer::UpdateBias(float lr)
 {
@@ -103,5 +103,27 @@ void CLayer::UpdateWeights(float lr)
     for (int i=0;i<m_vpNeurons.size();i++)
     {
         m_vpNeurons[i]->UpdateWeights(lr);
+    }
+}
+
+void CLayer::SetBatchSize(int nSize)
+{
+    for (int i =0;i<m_vpNeurons.size();i++)
+    {
+        m_vpNeurons[i]->SetBatchSize(nSize);
+    }
+}
+void CLayer::Forward(int index)
+{
+    for (int i = 0; i < m_vpNeurons.size(); i++)
+    {
+        m_vpNeurons[i]->Forward(index);
+    }
+}
+void CLayer::Backward(int index)
+{
+    for (int i = 0; i < m_vpNeurons.size(); i++)
+    {
+        m_vpNeurons[i]->Backward(index);
     }
 }
