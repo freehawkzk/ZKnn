@@ -115,6 +115,7 @@ void CLayer::SetBatchSize(int nSize)
 }
 void CLayer::Forward(int index)
 {
+#pragma omp parallel  for
     for (int i = 0; i < m_vpNeurons.size(); i++)
     {
         m_vpNeurons[i]->Forward(index);
@@ -122,8 +123,25 @@ void CLayer::Forward(int index)
 }
 void CLayer::Backward(int index)
 {
+#pragma omp parallel  for
     for (int i = 0; i < m_vpNeurons.size(); i++)
     {
+
         m_vpNeurons[i]->Backward(index);
+    }
+}
+
+void CLayer::ForwardMat()
+{
+    if (m_pBottom)
+    {
+        m_matZ = m_matW * m_pBottom->m_matA + m_matB;
+        for (int r = 0;r<m_matZ.rows;r++)
+        {
+            for (int c =0; c < m_matZ.cols; c++)
+            {
+                m_matA.at<float>(r, c) = Func_sigmoid(m_matZ.at<float>(r, c));
+            }
+        }
     }
 }

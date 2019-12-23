@@ -191,10 +191,16 @@ std::vector<float> CNetwork::Test(std::vector<float>& input)
 void CNetwork::Train(std::vector < std::vector<float>>&inputs, std::vector < std::vector<float>>&lables)
 {
     std::vector<int> vindexs;
-    int nbatchsize = 32;
-    for (int i=0;i<nbatchsize;i++)
+    int nbatchsize = 64;
+
+    std::map<int, int> mindexs;
+    while (mindexs.size()<nbatchsize)
     {
-        vindexs.push_back(rand() % inputs.size());
+            mindexs[rand() % inputs.size()] = 1;
+    }
+    for (auto it = mindexs.begin();it!=mindexs.end();it++)
+    {
+        vindexs.push_back(it->first);
     }
     std::vector < std::vector<float>> batchin;
     std::vector < std::vector<float>> labelin;
@@ -204,6 +210,17 @@ void CNetwork::Train(std::vector < std::vector<float>>&inputs, std::vector < std
         labelin.push_back(lables[vindexs[i]]);
     }
     Forward(batchin);
+    auto outlay = m_vpLayers[m_vpLayers.size() - 1];
+    float fsum = 0;
+    for (int j=0;j< labelin.size();j++)
+    {
+        for (int i = 0; i < outlay->m_vpNeurons.size(); i++)
+        {
+            fsum += pow(outlay->m_vpNeurons[i]->m_vA[j] - labelin[j][i], 2);
+        }
+    }
+    m_fBatchLoss = fsum/labelin.size();
+
     Backward(labelin);
     UpdateBias();
     UpdateWeights();
@@ -214,9 +231,10 @@ void CNetwork::Forward(std::vector < std::vector<float>>& inputs)
     int nBatchSize = inputs.size();
     SetBatchSize(nBatchSize);
     SetInput(inputs);
+#pragma omp parallel  for
     for (int i=0;i<inputs.size();i++)
     {
-      
+#pragma omp parallel  for
         for (int j = 1; j < m_vpLayers.size(); j++)
         {
             m_vpLayers[j]->Forward(i);
@@ -226,10 +244,12 @@ void CNetwork::Forward(std::vector < std::vector<float>>& inputs)
 
 void CNetwork::Backward(std::vector < std::vector<float>>& lables)
 {
+#pragma omp parallel  for
     for (int i =0;i<lables.size();i++)
     {
         CalcDeltaOfOutputLayer(lables, i);
-        for (int j=m_vpLayers.size()-2;j>0;j--)
+#pragma omp parallel  for
+        for (int j=m_vpLayers.size()-1;j>0;j--)
         {
             m_vpLayers[j]->Backward(i);
         }

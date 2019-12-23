@@ -33,7 +33,7 @@ CNeuron::CNeuron():m_lID(CNeuron::slNeuronCount++)\
 {
     m_mBottomLink.clear();
     m_mTopLink.clear();
-    std::cout << "Neuron: " << m_lID << " Constructed" << std::endl;
+    //std::cout << "Neuron: " << m_lID << " Constructed" << std::endl;
 }
 
 

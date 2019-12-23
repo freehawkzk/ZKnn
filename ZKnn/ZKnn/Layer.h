@@ -2,7 +2,7 @@
 #include <vector>
 #include "Common.h"
 #include "Neuron.h"
-
+#include "opencv2/opencv.hpp"
 class CLayer
 {
 public:
@@ -35,5 +35,14 @@ public:
     void Backward(int index);
 private:
     CLayer();
+
+public:
+    cv::Mat m_matW;
+    cv::Mat m_matB;
+    cv::Mat m_matZ;
+    cv::Mat m_matPrimeZ;
+    cv::Mat m_matA;
+public:
+    void ForwardMat();
 };
 

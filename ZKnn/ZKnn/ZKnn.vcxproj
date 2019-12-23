@@ -116,12 +116,13 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(CommonCode_Include)/opencv;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -131,6 +132,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CMnistNet.cpp" />
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="main.cpp" />
@@ -138,6 +140,7 @@
     <ClCompile Include="Neuron.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CMnistNet.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Network.h" />

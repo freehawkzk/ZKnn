@@ -8,6 +8,7 @@ public:
 
     std::vector<CLayer*> m_vpLayers;
     float m_fLearnRate;
+    float m_fBatchLoss;
 
     void SetLearnRate(float lr);
     void AddInputLayer(int nNum);
