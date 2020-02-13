@@ -2,8 +2,19 @@
 #include "Network.h"
 #include "opencv2/opencv.hpp"
 #include <fstream>
+#include <math.h>
+#define M_PI       3.14159265358979323846   // pi
 int main()
 {
+    float ne = 180.0 / 2048;
+    float ang = 0;
+    for (int i=1;i<2048;i++)
+    {
+        ang = i * ne;
+        std::cout << cosf(ang / 180*M_PI) <<"\t"<<cosf(i*ne*M_PI/180)-cosf((i-1)*ne*M_PI/180)<< std::endl;
+    }
+
+
     CNetwork net;
     net.SetLearnRate(0.1);
     net.AddInputLayer(3);
