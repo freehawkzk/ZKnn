@@ -1,8 +1,8 @@
 import torch
 
 # prepare datasets
-x_data = torch.Tensor([[1.0],[2.0],[3.0],[4.0],[5.0]])
-y_data = torch.Tensor([[3.0],[7.0],[13.0],[21.0],[31]])
+x_data = torch.Tensor([[1.0],[0.5],[1.5],[2.0],[2.5],[3.0],[4.0],[5.0]])
+y_data = torch.Tensor([[3.0],[1.75],[4.75],[7.0],[9.75],[13.0],[21.0],[31]])
 
 
 # define model
@@ -12,13 +12,15 @@ class LinearModel(torch.nn.Module):
         self.linear1=torch.nn.Linear(1,1,)
         self.linear2=torch.nn.Linear(1,1,)
         self.linear3=torch.nn.Linear(1,1,)
+        self.Sig1 = torch.nn.Sigmoid()
+        self.Sig2 = torch.nn.Sigmoid()
 
     
     def forward(self,x):
         x = self.linear1(x)
-        x = torch.nn.functional.sigmoid(x)
+        x = self.Sig1(x)
         x = self.linear2(x)
-        x = torch.nn.functional.sigmoid(x)
+        x = self.Sig2(x)
         y_pred = self.linear3(x)
         return y_pred
 
@@ -32,7 +34,7 @@ criterioc = torch.nn.MSELoss(size_average=False)
 optim = torch.optim.SGD(model.parameters(),lr=0.001)
 
 # this is the train cycle, want to train 1000 cycles.
-for epoch in range(10000):
+for epoch in range(50000):
     y_pred = model(x_data) # forward
     loss = criterioc(y_pred,y_data)# loss
     print(epoch,loss.item())
@@ -51,8 +53,8 @@ print("y_pred = ",y_test.data.item())
 model.eval()
 
 # output the model to onnx format
-torch_out = torch.onnx._export(model, x_test, "nonlinear.onnx",export_params=True)
+torch_out = torch.onnx._export(model, x_test, "../../../model/nonlinear.onnx",export_params=True)
 
 # use torch to save model.
-torch.save(model,"./nonlinearmodel.pkl")
+torch.save(model,"../../../model/nonlinear.pkl")
 

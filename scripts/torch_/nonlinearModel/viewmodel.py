@@ -1,2 +1,2 @@
 import netron
-netron.start("./linearmodel.pkl")
+netron.start("../../../model/nonlinear.onnx")
