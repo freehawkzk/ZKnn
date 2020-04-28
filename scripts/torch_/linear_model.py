@@ -42,7 +42,12 @@ x_test = torch.Tensor([[4.0]])
 y_test = model(x_test)
 print("y_pred = ",y_test.data)
 
+# set the model to eval status
 model.eval()
+
+# output the model to onnx format
 torch_out = torch.onnx._export(model, x_test, "linear.onnx",export_params=True)
+
+# use torch to save model.
 torch.save(model,"./linearmodel.pkl")
 
