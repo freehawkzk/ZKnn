@@ -351,3 +351,8 @@ MigrationBackup/
 mnist/
 mnist_train/
 data/
+CMakeFiles/
+*.cmake
+Makefile
+CMakeCache.txt
+.vscode/
