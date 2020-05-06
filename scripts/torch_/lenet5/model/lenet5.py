@@ -22,7 +22,6 @@ class LeNet5(torch.nn.Module):
             x = self.relu(x)
 
             x = self.conv3(x)
-            # x = self.pooling(x)
             x = self.relu(x)
 
             x = x.view(x.shape[0],-1)
