@@ -9,4 +9,5 @@ add_subdirectory(./cpp/nonlinearmodel)
 # add_subdirectory(./cpp/createlicensecode)
 # add_subdirectory(./cpp/checklicense)
 add_subdirectory(./cpp/mnist-cnn)
+add_subdirectory(./cpp/lenet5)
 
