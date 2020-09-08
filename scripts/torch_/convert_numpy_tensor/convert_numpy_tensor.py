@@ -38,6 +38,24 @@ print("x_tensor1: ",x_tensor1)
 #        [  1.,   1.,   1.]], dtype=torch.float64)
 
 """
+torch.tensor() always copies data. 
+If you have a Tensor data and just want to change its requires_grad flag, 
+use requires_grad_() or detach() to avoid a copy. 
+If you have a numpy array and want to avoid a copy, use torch.as_tensor().
+"""
+x_tensor0 = t.tensor(x_array)
+print("x_tensor0: ",x_tensor0)
+x_tensor0[0,0] = 125
+print("x_array: ",x_array)
+print("x_tensor0: ",x_tensor0)
+# x_tensor0:  tensor([[  1., 100.,   1.],
+#         [  1.,   1.,   1.]], dtype=torch.float64)
+# x_array:  [[  1. 100.   1.]
+#  [  1.   1.   1.]]
+# x_tensor0:  tensor([[125., 100.,   1.],
+#         [  1.,   1.,   1.]], dtype=torch.float64)
+
+"""
 Convert the data into a torch.Tensor. 
 If the data is already a Tensor with the same dtype and device, no copy will be performed, 
 otherwise a new Tensor will be returned with computational graph retained if data Tensor has requires_grad=True. 
