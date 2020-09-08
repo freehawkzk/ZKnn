@@ -9,5 +9,8 @@ add_subdirectory(./cpp/nonlinearmodel)
 # add_subdirectory(./cpp/createlicensecode)
 # add_subdirectory(./cpp/checklicense)
 add_subdirectory(./cpp/mnist-cnn)
+add_subdirectory(./cpp/u2net)
 add_subdirectory(./cpp/lenet5)
+# add_subdirectory(./cpp/torchdemo)
+# add_subdirectory(./cpp/tensorflow_cc/mnist)
 
